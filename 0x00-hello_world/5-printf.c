@@ -1,9 +1,7 @@
 #include <stdio.h>
 /**
-*main - print the string in the put fuction
-*Description: using the  main function
-*this ptogram prints "with proper grammar, but the outcome is a piece of art
-*Return: 0
+* Description: main - prints out a string to stdout.
+* Return: 0 if success.
 */
 int main(void)
 {
