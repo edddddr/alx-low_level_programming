@@ -1,4 +1,3 @@
-
 #include "main.h"
 /**
  * _memset - replace that constant value of array
