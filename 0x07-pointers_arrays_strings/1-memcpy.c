@@ -1,17 +1,24 @@
 #include "main.h"
 
 /**
-* _memcpy - function to copy memory
-* @dest: destination memory
-* @src: source memory
-* @n: number of bytes to be copied
-* Return: string copied from source
-*/
-char *_memcpy(char *dest, char *src, unsigned int n)
+ * _strpbrk - searchs a string of bytes
+ * @s: sources of a string
+ * @accept: a pointer to the char bytes in @s
+ * Return: the NULL vlue if no file thier
+ */
+char *_strpbrk(char *s, char *accept)
 {
-	unsigned int i;
+	unsigned int i, j;
 
-	for (i = 0; i < n; i++)
-		dest[i] = src[i];
-return (dest);
+	for (i = 0; s[i]; i++)
+	{
+		for (j = 0; accept[j]; j++)
+		{
+			if (s[i] == accept[j])
+				break;
+		}
+		if (accept[j])
+			return (s + i);
+	}
+	return (0);
 }
