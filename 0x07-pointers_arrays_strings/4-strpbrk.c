@@ -1,7 +1,4 @@
-
-
 #include "main.h"
-#include <stdio.h>
 
 /**
  * _strpbrk - searchs a string of bytes
@@ -9,38 +6,19 @@
  * @accept: a pointer to the char bytes in @s
  * Return: the NULL vlue if no file thier
  */
-
 char *_strpbrk(char *s, char *accept)
 {
-	int i;
+	unsigned int i, j;
 
-	while (*s)
+	for (i = 0; s[i]; i++)
 	{
-		for (i = 0; accept[i]; i++)
+		for (j = 0; accept[j]; j++)
 		{
-			if (*s == accept[i])
-			{
-				return (s);
-			}
+			if (s[i] == accept[j])
+				break;
 		}
-		s++;
+		if (accept[j])
+			return (s + i);
 	}
-	return (NULL);
+	return (0);
 }
-
-			if (*s == accept[i])
-
-			{
-
-				return (s);
-
-			}
-
-		}
-
-		s++;
-
-	}
-
-	return (NULL);
-
