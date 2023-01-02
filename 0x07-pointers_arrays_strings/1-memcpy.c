@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * _strpbrk - searchs a string of bytes
  * @s: sources of a string
