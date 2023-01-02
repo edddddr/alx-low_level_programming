@@ -1,57 +1,25 @@
-
-
-
-
 #include "main.h"
 
-#include <stdio.h>
-
-
-
 /**
-
- * _strpbrk - searchs a string of bytes
-
- * @s: sources of a string
-
- * @accept: a pointer to the char bytes in @s
-
- * Return: the NULL vlue if no file thier
-
- */
-
-
-
-char *_strpbrk(char *s, char *accept)
-
+  * _strspn - search th length of a string for a set of bytes in prefix
+  * @s: source of string
+  * @accept: accepted the byt
+  *
+  * Return: number of bytes in the initial segment of @s
+  */
+unsigned int _strspn(char *s, char *accept)
 {
+	unsigned int i, j;
 
-	int i;
-
-
-
-	while (*s)
-
+	for (i = 0; s[i]; i++)
 	{
-
-		for (i = 0; accept[i]; i++)
-
+		for (j = 0; accept[j]; j++)
 		{
-
-			if (*s == accept[i])
-
-			{
-
-				return (s);
-
-			}
-
+			if (s[i] == accept[j])
+				break;
 		}
-
-		s++;
-
+		if (!accept[j])
+			break;
 	}
-
-	return (NULL);
-
+	return (i);
 }
