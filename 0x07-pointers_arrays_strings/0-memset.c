@@ -1,13 +1,13 @@
 #include "main.h"
 
 /**
- * _memset - replace that constant value of array
- * 
- * @s: pointer to memory area to fill
- * @n: the number of bytes to array
- * @b: constant byte
- * Return: *s
- */
+* _memset - a function that replaces values of an array
+*@s: pointer to char params
+* @b: data to change
+* @n: index
+* Return: *s
+*/
+
 char *_memset(char *s, char b, unsigned int n)
 {
 	unsigned int i;
