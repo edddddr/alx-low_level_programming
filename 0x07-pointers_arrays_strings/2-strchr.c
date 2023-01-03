@@ -1,5 +1,5 @@
 #include "main.h"
-#include <stddef.h>
+
 /**
  * _strchr - prints found c
  * @s: pointer to char
@@ -9,15 +9,15 @@
 
 char *_strchr(char *s, char c)
 {
-	for (; *s != '\0'; s++)
+	while (*s)
 	{
-	if (*s == c)
-		return (s);
+		if (*s != c)
+			s++;
+		else
+			return (s);
 	}
-	if (*s == c)
-	{
+	if (c == '\0')
 		return (s);
-	}
-	else
+
 	return (NULL);
-}
+} 
