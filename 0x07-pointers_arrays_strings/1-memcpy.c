@@ -1,23 +1,17 @@
 #include "main.h"
-/**
- * _strpbrk - searchs a string of bytes
- * @s: sources of a string
- * @accept: a pointer to the char bytes in @s
- * Return: the NULL vlue if no file thier
- */
-char *_strpbrk(char *s, char *accept)
-{
-	unsigned int i, j;
 
-	for (i = 0; s[i]; i++)
-	{
-		for (j = 0; accept[j]; j++)
-		{
-			if (s[i] == accept[j])
-				break;
-		}
-		if (accept[j])
-			return (s + i);
-	}
-	return (0);
+/**
+* _memcpy - copy the momory
+* @dest: destination memory
+* @src: the number or source of memory
+* @n: the number of bytes to be copied
+* Return: the value of that copied form src 
+*/
+char *_memcpy(char *dest, char *src, unsigned int n)
+{
+	unsigned int i;
+
+	for (i = 0; i < n; i++)
+		dest[i] = src[i];
+return (dest);
 }
