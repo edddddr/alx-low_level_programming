@@ -1,16 +1,12 @@
-#include "main.h"
+#include <unistd.h>           
 /**
- * _puts_recursion - print a string.
- * @s: pointer to char
- * Return: No.
+ * _putchar - writes the character c to stdout
+ * @c: The character to print
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
  */
-void _puts_recursion(char *s)
+int _putchar(char c)
 {
-	if (*s == '\0')
-	{
-		_putchar('\n');
-		return;
-	}
-	_putchar(*s);
-	_puts_recursion(s + 1);
+	return (write(1, &c, 1));
 }
