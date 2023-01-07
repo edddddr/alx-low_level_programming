@@ -1,41 +1,16 @@
-I#include <stdio.h>
-
-
+#include <stdio.h>
 
 /**
+ * main - function that prints the number of arguments passed
+ * @argc: argument count
+ * @argv: charater array of passed arguments
  *
- *  * main - prints all passed arguments
- *
- *   * @argc: number of argument passed
- *
- *    * @argv: array of arguments
- *
- *     *
- *
- *      * Return: returns nothing
- *
- *       */
+ * Return: 0
+ */
 
 
-
-int main(int argc, char *argv[])
-
+int main(int argc, char __attribute__((__unused__)) *argv[])
 {
-
-		int i;
-
-
-
-			for (i = 0; i < argc; i++)
-
-					{
-
-								printf("%s\n", argv[i]);
-
-									}
-
-
-
-				return (0);
-
+	printf("%d\n", argc - 1);
+	return (0);
 }
