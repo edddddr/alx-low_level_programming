@@ -4,8 +4,7 @@
  * *create_array - char array
  * intialize by char
  * @size: the size an array
- * @c: intialize array char 
- *
+ * @c: intialize array char
  * Return: gives or Success, NULL or Error
  */
 
