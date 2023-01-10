@@ -1,4 +1,5 @@
-#include <main.h>
+#include "main.h"
+
 /**
  * *create_array - char array
  * intialize by char
@@ -7,20 +8,29 @@
  *
  * Return: gives or Success, NULL or Error
  */
+
 char *create_array(unsigned int size, char c)
 {
-char *b;
-unsigned int i = 0;
-if (size == 0)
-return (NULL);
-p = (char *) malloc(sizeof(char) * size);
-if (b == NULL)
-return (0);
-while (i < size)
-{
-*(b + i) = c;
-i++;
-}
-*(b + i) = '\0';
-return (p);
+	char *str;
+
+	unsigned int i = 0;
+
+	str = malloc(size);
+
+	if (size == 0)
+	{
+		return (NULL);
+	}
+
+	if (str == NULL)
+	{
+		return (NULL);
+	}
+
+	for (; i < size; i++)
+	{
+		str[i] = c;
+	}
+
+	return (str);
 }
