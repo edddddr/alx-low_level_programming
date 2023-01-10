@@ -1,29 +1,29 @@
 #include "main.h"
 #include <stdlib.h>
 /**
- * _strdup - allocate the space in the memory
- * @str: string
+ * _strdup - allocate the memory address vlaue
+ * @str: string.
  *
- * Return: put the pointer return value
+ * Return: put the pointer value
  */
 char *_strdup(char *str)
 {
 	char *strout;
-	unsigned int u, s;
+	unsigned int i, j;
 
 	if (str == NULL)
 		return (NULL);
 
-	for (i = 0; str[u] != '\0'; u++)
+	for (i = 0; str[i] != '\0'; i++)
 		;
 
-	strout = (char *)malloc(sizeof(char) * (u + 1));
+	strout = (char *)malloc(sizeof(char) * (i + 1));
 
 	if (strout == NULL)
 		return (NULL);
 
-	for (s = 0; s <= u; s++)
-		strout[s] = str[s];
+	for (j = 0; j <= i; j++)
+		strout[j] = str[j];
 
 	return (strout);
 }
