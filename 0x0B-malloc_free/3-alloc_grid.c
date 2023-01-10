@@ -1,75 +1,43 @@
-clude "holberton.h"
-
-
+#include "main.h"
+#include <stdlib.h>
 
 /**
+ * alloc_grid - return a pointer one two(2) dimessional array.
+ * @width: width of the array.
+ * @height: height of the array.
  *
- *  * **alloc_grid - concatenates two strings
- *
- *   * @height: height of the grid plane
- *
- *    * @width: width of the grid plane
- *
- *     *
- *
- *      * Return: pointer to the new string created (Success), or NULL (Error)
- *
- *       */
-
+ * Return: the pointer of an array
+ */
 int **alloc_grid(int width, int height)
-
 {
-
-	int **arr;
-
+	int **gridout;
 	int i, j;
 
-	if (height <= 0 || width <= 0)
-
+	if (width < 1 || height < 1)
 		return (NULL);
 
-	arr = (int **)malloc(sizeof(int *) * height);
-
-	if (arr == NULL)
-
+	gridout = malloc(height * sizeof(int *));
+	if (gridout == NULL)
+	{
+		free(gridout);
 		return (NULL);
+	}
 
 	for (i = 0; i < height; i++)
-
 	{
-
-		arr[i] = (int *) malloc(sizeof(int) * width);
-
-		if (arr[i] == NULL)
-
+		gridout[i] = malloc(width * sizeof(int));
+		if (gridout[i] == NULL)
 		{
-
-			free(arr);
-
-			for (j = 0; j <= 1; j++)
-
-				free(arr[j]);
-
+			for (i--; i >= 0; i--)
+				free(gridout[i]);
+			free(gridout);
 			return (NULL);
-
 		}
-
 	}
 
 	for (i = 0; i < height; i++)
-
-	{
-
 		for (j = 0; j < width; j++)
+			gridout[i][j] = 0;
 
-		{
-
-			arr[i][j] = 0;
-
-		}
-
-	}
-
-	return (arr);
-
+	return (gridout);
 }
