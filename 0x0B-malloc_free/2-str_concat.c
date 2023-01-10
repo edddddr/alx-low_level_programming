@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * str_concat - the functiontion that use to concatinate the two strings s1 and s2.
+ * str_concat - the fun that use to concatinate the two strings s1 and s2.
  * @s1: 1ststring
  * @s2: 2nd string
  * Return: return a pointer or a null value.
