@@ -1,41 +1,54 @@
-#include <stdlib.h>
 #include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 /**
-  * _realloc - reallocates a memory block using malloc and free.
-  * @ptr: pointer to the memory previously allocated with a
-  * call to ``` malloc : malloc(old_size) ```.
-  * @old_size: size in bytes allocated for ptr.
-  * @new_size: size in bytes of new memory block.
-  *
-  * Return: pointer to new mem block, NULL or ptr.
-  */
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
+ * simple_print_buffer - prints buffer in hexa
+ * @buffer: the address of memory to print
+ * @size: the size of the memory to print
+ *
+ * Return: Nothing.
+ */
+void simple_print_buffer(char *buffer, unsigned int size)
 {
-	char *nptr;
-	unsigned int i;
+    unsigned int i;
 
-	if (new_size == old_size)
-		return (ptr);
-	if ((new_size == 0) && (ptr != NULL))
-	{
-		free(ptr);
-		return (NULL);
-	}
-	if (ptr == NULL)
-	{
-		nptr = malloc(new_size);
-		if (nptr == NULL)
-			return (NULL);
-	}
-	if (new_size > old_size && (ptr != NULL))
-	{
-		nptr = malloc(new_size);
-		if (nptr == NULL)
-			return (nptr);
-		for (i = 0; i < old_size; i++)
-			nptr[i] = *((char *)ptr + 1);
-		free(ptr);
-	}
+    i = 0;
+    while (i < size)
+    {
+        if (i % 10)
+        {
+            printf(" ");
+        }
+        if (!(i % 10) && i)
+        {
+            printf("\n");
+        }
+        printf("0x%02x", buffer[i]);
+        i++;
+    }
+    printf("\n");
+}
 
-	return (nptr);
+/**
+ * main - check the code for
+ *
+ * Return: Always 0.
+ */
+int main(void)
+{
+    char *p;
+    int i;
+
+    p = malloc(sizeof(char) * 10);
+    p = _realloc(p, sizeof(char) * 10, sizeof(char) * 98);
+    i = 0;
+    while (i < 98)
+    {
+        p[i++] = 98;
+    }
+    simple_print_buffer(p, 98);
+    free(p);
+    return (0);
 }
