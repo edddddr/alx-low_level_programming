@@ -1,13 +1,12 @@
 #include "dog.h"
 
 /**
- * new_dog - creates new dog.
- * @name: dog name
- * @age: dog age
- * @owner: owner of the dog.
- *
- * Return: struct dog.
- */
+* _strlen - returns the length of a string
+* @s: string to evaluate
+*
+* Return: the length of the string
+*/
+
 dog_t *new_dog(char *name, float age, char *owner)
 {
 	dog_t *p_dog;
