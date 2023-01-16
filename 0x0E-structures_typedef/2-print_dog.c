@@ -3,9 +3,11 @@
 #include "dog.h"
 
 /**
-* print_dog - prints a struct dog
-* @d: struct dog to print
-*/
+ * print_dog - prints all the values for the struct
+ * @d:struct for dog
+ *
+ * Return: nothing but to display all the values for the struct elements.
+ */
 void print_dog(struct dog *d)
 {
 if (d == NULL)
