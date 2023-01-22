@@ -3,13 +3,13 @@
 #include <stdarg.h>
 
 /**
- * print_numbers - print a line with end.
- * @separator: print string amoung num.
- * @n: pass num to the func.
- * @...: ptint variables to the number.
+ * print_strings - Prints strings, followed by a new line.
+ * @separator: The string to be printed between strings.
+ * @n: The number of strings passed to the function.
+ * @...: A variable number of strings to be printed.
  *
  * Description: If separator is NULL, it is not printed.
- *              If one of the strings if NULL, (no) is printed instead.
+ *              If one of the strings if NULL, (nil) is printed instead.
  */
 void print_strings(const char *separator, const unsigned int n, ...)
 {
@@ -27,6 +27,7 @@ void print_strings(const char *separator, const unsigned int n, ...)
 			printf("(nil)");
 		else
 			printf("%s", str);
+
 
 		if (index != (n - 1) && separator != NULL)
 			printf("%s", separator);
