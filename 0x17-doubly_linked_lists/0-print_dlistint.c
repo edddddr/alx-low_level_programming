@@ -6,17 +6,17 @@
  *
  * Return: number of nodes in the list
  */
-size_t print_dlistint(const dlistint_t *n)
+size_t print_dlistint(const dlistint_t *h)
 {
 	size_t nodes = 0;
 
-	if (!n)
+	if (!h)
 		return (0);
 
-	while (n)
+	while (h)
 	{
 		printf("%d\n", h->n);
-		n = n->next;
+		h = h->next;
 		nodes++;
 	}
 
