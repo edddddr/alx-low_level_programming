@@ -1,92 +1,97 @@
 #include "hash_tables.h"
 
 /**
- * set_pair - mallocs a key/value pair to the hash table.
- * @key: the key, a string that cannot be empty.
- * @value: the value associated with the key, can be an empty string.
- *
- * Return: pointer to the new node.
+ * replace_value - replaces the value at a pre-existing key
+ * @ht: double pointer to the hash_node_t list
+ * @key: new key to add in the node
+ * @value: value to add in the node
  */
-hash_node_t *set_pair(const char *key, const char *value)
+void replace_value(hash_node_t **ht, const char *key, const char *value)
 {
-	hash_node_t *node = malloc(sizeof(hash_node_t));
+	hash_node_t *temp = *ht;
 
-	if (node == NULL)
-		return (NULL);
-	node->key = malloc(strlen(key) + 1);
-	if (node->key == NULL)
-		return (NULL);
-	node->value = malloc(strlen(value) + 1);
-	if (node->value == NULL)
-		return (NULL);
-	strcpy(node->key, key);
-	strcpy(node->value, value);
-	return (node);
+	while (temp && strcmp(temp->key, key))
+		temp = temp->next;
+
+	free(temp->value);
+	temp->value = strdup(value);
 }
 
 /**
- * set_pair_only - (no collision) set key:value pair to first array element
- * @ht: pointer to the hash table.
- * @key: the key, a string that cannot be empty.
- * @value: the value associated with the key, can be an empty string.
- * @index: the key's index.
+ * check_key - checks if a key exists in a hash table
+ * @ht: pointer to the hash_node_t list
+ * @key: key to look for
  *
- * Return: the node, or NULL if failed.
+ * Return: 1 if the key is found, 0 otherwise
  */
-int set_pair_only(hash_table_t *ht, const char *key,
-		  const char *value, unsigned long int index)
+int check_key(hash_node_t *ht, const char *key)
 {
-	hash_node_t *node = set_pair(key, value);
+	while (ht)
+	{
+		if (!strcmp(ht->key, key))
+			return (1);
+		ht = ht->next;
+	}
 
-	if (node == NULL)
-		return (0);
-	node->next = NULL;
-	ht->array[index] = node;
-	return (1);
+	return (0);
 }
 
 /**
- * hash_table_set - adds an element to the hash table.
- * @ht: a pointer to the hash table array.
- * @key: the key, a string that cannot be empty.
- * @value: the value associated with the key, can be an empty string.
+ * add_node - adds a new node at the beginning of a linked list
+ * @head: double pointer to the hash_node_t list
+ * @key: new key to add in the node
+ * @value: value to add in the node
  *
- * Return: 1 on success, 0 on error.
+ * Return: the address of the new element, or NULL if it fails
+ */
+hash_node_t *add_node(hash_node_t **head, const char *key, const char *value)
+{
+	hash_node_t *new;
+
+	new = malloc(sizeof(hash_node_t));
+	if (!new)
+		return (NULL);
+
+	new->key = strdup(key);
+	new->value = strdup(value);
+
+	if (*head == NULL)
+	{
+		(*head) = new;
+		new->next = NULL;
+	} else
+	{
+		new->next = (*head);
+		(*head) = new;
+	}
+
+	return (*head);
+}
+
+/**
+ * hash_table_set - adds an element to the hash table
+ * @ht: hash table to add the element to
+ * @key: key of the element, will give the index in the array
+ * @value: value of the element to store in the array
+ *
+ * Return: 1 on success, 0 otherwise
  */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int index;
-	hash_node_t *node;
 
-	if (key == NULL || ht == NULL)
+	if (!ht || !key || !strcmp(key, "") || !value)
 		return (0);
+
 	index = key_index((unsigned char *)key, ht->size);
-	node = ht->array[index];
-	if (node == NULL)
-		return (set_pair_only(ht, key, value, index));
-	while (node != NULL)
+
+	if (check_key(ht->array[index], key))
 	{
-		if (strcmp(node->key, key) == 0)
-		{
-			if (strcmp(node->value, value) == 0)
-				return (1);
-			free(node->value);
-			node->value = malloc(strlen(value) + 1);
-			if (node->value == NULL)
-				return (0);
-			strcpy(node->value, value);
-			return (1);
-		}
-		node = node->next;
-	}
-	if (node == NULL)
-	{
-		node = set_pair(key, value);
-		if (node == NULL)
-			return (0);
-		node->next = ht->array[index];
-		ht->array[index] = node;
+		replace_value(&ht->array[index], key, value);
 		return (1);
 	}
-	return (0);
+	add_node(&ht->array[index], key, value);
+	if (&ht->array[index] == NULL)
+		return (0);
+	return (1);
 }
