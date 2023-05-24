@@ -3,29 +3,29 @@
 
 
 def num_water_neighbors(grid, i, j):
-        """Returns the number of water neighbors a cell has in a grid."""
+    """Returns the number of water neighbors a cell has in a grid."""
 
-            side = 0
+    side = 0
 
-                if i <= 0 or not grid[i - 1][j]:
-                            side += 1
-                                if j <= 0 or not grid[i][j - 1]:
-                                            side += 1
-                                                if j >= len(grid[i]) - 1 or not grid[i][j + 1]:
-                                                            side += 1
-                                                                if i >= len(grid) - 1 or not grid[i + 1][j]:
-                                                                            side += 1
+    if i <= 0 or not grid[i - 1][j]:
+        side += 1
+    if j <= 0 or not grid[i][j - 1]:
+        side += 1
+    if j >= len(grid[i]) - 1 or not grid[i][j + 1]:
+        side += 1
+    if i >= len(grid) - 1 or not grid[i + 1][j]:
+        side += 1
 
-                                                                                return side
+    return side
 
 
-                                                                            def island_perimeter(grid):
-                                                                                    """Returns the perimeter of the island in grid."""
+def island_perimeter(grid):
+    """Returns the perimeter of the island in grid."""
 
-                                                                                        perim = 0
-                                                                                            for i in range(len(grid)):
-                                                                                                        for j in range(len(grid[i])):
-                                                                                                                        if grid[i][j]:
-                                                                                                                                            perim += num_water_neighbors(grid, i, j)
+    perim = 0
+    for i in range(len(grid)):
+        for j in range(len(grid[i])):
+            if grid[i][j]:
+                perim += num_water_neighbors(grid, i, j)
 
-                                                                                                                                                return perim
+    return perim
